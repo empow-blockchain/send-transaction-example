@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EMPOW DAPP EXAMPLE</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- OPEN INDEX.JS TO SEE SCRIPT EXAMPLE -->
+    <script src="index.js"></script>
+    <!-- OPEN INDEX.JS TO SEE SCRIPT EXAMPLE -->
+
+</head>
+
+<body>
+    <div class="container" style="padding-top: 50px">
+        <div id="connect" class="card text-white mb-3">
+            <div class="card-body">
+                <a name="connect" class="btn btn-primary btn-connect" href="#" role="button">Connect</a>
+            </div>
+        </div>
+        <div id="send-transaction" class="card mb-3" style="display: none">
+            <br>
+            <h3 style="padding-left: 1.25rem">TEST SEND TRANSACTION</h3>
+            <form>
+                <div class="form-group row">
+                    <label for="inputName" class="col-md-12">Contract Name: </label>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control contract-name" name="inputName" id="inputName" placeholder="Example: token.empow, social.empow, stake.empow...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputName" class="col-md-12">Function: </label>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control function-name" name="inputName" id="inputName" placeholder="Example: transfer, transferFreeze, post, stake...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputName" class="col-md-12">Argument: </label>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control args" name="inputName" id="inputName" placeholder='Example: ["em", "address1", "address2", "100", "memo"]'>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary btn-send">Send Transaction</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
