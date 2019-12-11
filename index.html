@@ -26,6 +26,175 @@
                 <a name="connect" class="btn btn-primary btn-connect" href="#" role="button">Connect</a>
             </div>
         </div>
+        <div id="all-functions" class="card mb-3" style="display: none;">
+            <br>
+            <h3>ALL FUNCTIONS</h3>
+            <button type="button" class="btn btn-primary transfer" data-name="transfer">Transfer EM</button>
+            <button type="button" class="btn btn-primary pledgegas" data-name="pledgegas">Pledge</button>
+            <button type="button" class="btn btn-primary unpledgegas" data-name="unpledgegas">Unpledge</button>
+            <button type="button" class="btn btn-primary sellram" data-name="sellram">Sell Ram</button>
+            <button type="button" class="btn btn-primary buyram" data-name="buyram">Buy Ram</button>
+            <button type="button" class="btn btn-primary stake" data-name="stake">Stake EM</button>
+            <button type="button" class="btn btn-primary withdrawstake" data-name="withdrawstake">Withdraw
+                Stake</button>
+            <button type="button" class="btn btn-primary unstake" data-name="unstake">Unstake</button>
+            <button type="button" class="btn btn-primary withdrawstakeall" data-name="withdrawstakeall">Withdraw Stake
+                All</button>
+
+            <div id="transfer" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">To: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control to" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Amount: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control amount" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Memo: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control memo" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-send">Transfer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="pledgegas" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">To: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control to" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Amount: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control mmount" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-send">Pledge</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="unpledgegas" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Amount: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control amount" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-send">Unpledge</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="sellram" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Amount: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control amount" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-send">Sell Ram</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="buyram" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">To: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control to" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Amount: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control amount" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-send">Sell Ram</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="stake" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Amount: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control amount" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-send">Stake EM</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="withdrawstake" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Package ID: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control packageID" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-send">Withdraw Stake</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="unstake" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Package ID: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control packageID" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-send">Unstake</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="withdrawstakeall" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-send">Withdraw Stake All</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
         <div id="send-transaction" class="card mb-3" style="display: none">
             <br>
             <h3 style="padding-left: 1.25rem">TEST SEND TRANSACTION</h3>
@@ -33,19 +202,19 @@
                 <div class="form-group row">
                     <label for="inputName" class="col-md-12">Contract Name: </label>
                     <div class="col-md-12">
-                        <input type="text" class="form-control contract-name" name="inputName" id="inputName" placeholder="Example: token.empow, social.empow, stake.empow...">
+                        <input type="text" class="form-control contract-name" name="inputName" id="inputName">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputName" class="col-md-12">Function: </label>
                     <div class="col-md-12">
-                        <input type="text" class="form-control function-name" name="inputName" id="inputName" placeholder="Example: transfer, transferFreeze, post, stake...">
+                        <input type="text" class="form-control function-name" name="inputName" id="inputName">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputName" class="col-md-12">Argument: </label>
                     <div class="col-md-12">
-                        <input type="text" class="form-control args" name="inputName" id="inputName" placeholder='Example: ["em", "address1", "address2", "100", "memo"]'>
+                        <input type="text" class="form-control args" name="inputName" id="inputName">
                     </div>
                 </div>
                 <div class="form-group row">
