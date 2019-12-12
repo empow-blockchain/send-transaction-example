@@ -487,7 +487,7 @@ function bindWithdrawStakeButton(e) {
 
     addAlert('primary', 'Sending...')
 
-    const packageID = $("#withdrawstake .packageID").val()
+    const packageID = parseInt($("#withdrawstake .packageID").val())
 
     const tx = window.empow.callABI("stake.empow", "withdraw", [address, packageID])
 
@@ -513,7 +513,7 @@ function bindUnstakeButton(e) {
 
     addAlert('primary', 'Sending...')
 
-    const packageID = $("#unstake .packageID").val()
+    const packageID = parseInt($("#unstake .packageID").val())
 
     const tx = window.empow.callABI("stake.empow", "unstake", [address, packageID])
 
