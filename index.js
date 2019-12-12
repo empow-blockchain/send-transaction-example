@@ -232,7 +232,7 @@ function bindFunctionButton() {
             
             $("#send-transaction .contract-name").val("token.empow")
             $("#send-transaction .function-name").val("transfer")
-            $("#send-transaction .args").val(`["em", ${address}, ${to}, ${value}, ${memo}]`)
+            $("#send-transaction .args").val(`["em", "${address}", "${to}", "${value}", "${memo}"]`)
         }
 
         if (option === 1) {
@@ -240,21 +240,21 @@ function bindFunctionButton() {
             const value = $("#pledgegas .amount").val()
             $("#send-transaction .contract-name").val("gas.empow")
             $("#send-transaction .function-name").val("pledge")
-            $("#send-transaction .args").val(`[${address}, ${to}, ${value}]`)
+            $("#send-transaction .args").val(`["${address}", "${to}", "${value}"]`)
         }
 
         if (option === 2) {
             const value = $("#unpledgegas .amount").val()
             $("#send-transaction .contract-name").val("gas.empow")
             $("#send-transaction .function-name").val("unpledge")
-            $("#send-transaction .args").val(`[${address}, ${address}, ${value}]`)
+            $("#send-transaction .args").val(`["${address}", "${address}", "${value}"]`)
         }
 
         if (option === 3) {
             const value = $("#sellram .amount").val()
             $("#send-transaction .contract-name").val("ram.empow")
             $("#send-transaction .function-name").val("sell")
-            $("#send-transaction .args").val(`[${address}, ${address}, ${value}]`)
+            $("#send-transaction .args").val(`["${address}", "${address}", "${value}"]`)
         }
 
         if (option === 4) {
@@ -262,34 +262,34 @@ function bindFunctionButton() {
             const value = $("#buyram .amount").val()
             $("#send-transaction .contract-name").val("ram.empow")
             $("#send-transaction .function-name").val("buy")
-            $("#send-transaction .args").val(`[${address}, ${to}, ${value}]`)
+            $("#send-transaction .args").val(`["${address}", "${to}", "${value}"]`)
         }
 
         if (option === 5) {
             const value = $("#stake .amount").val()
             $("#send-transaction .contract-name").val("stake.empow")
             $("#send-transaction .function-name").val("stake")
-            $("#send-transaction .args").val(`[${address}, ${value}]`)
+            $("#send-transaction .args").val(`["${address}", "${value}"]`)
         }
 
         if (option === 6) {
             const packageID = parseInt($("#withdrawstake .packageID").val())
             $("#send-transaction .contract-name").val("stake.empow")
             $("#send-transaction .function-name").val("withdraw")
-            $("#send-transaction .args").val(`[${address}, ${packageID}]`)
+            $("#send-transaction .args").val(`["${address}", ${packageID}]`)
         }
 
         if (option === 7) {
             const packageID = parseInt($("#unstake .packageID").val())
             $("#send-transaction .contract-name").val("stake.empow")
             $("#send-transaction .function-name").val("unstake")
-            $("#send-transaction .args").val(`[${address}, ${packageID}]`)
+            $("#send-transaction .args").val(`["${address}", ${packageID}]`)
         }
 
         if (option === 8) {
             $("#send-transaction .contract-name").val("stake.empow")
             $("#send-transaction .function-name").val("withdrawAll")
-            $("#send-transaction .args").val(`[${address}]`)
+            $("#send-transaction .args").val(`["${address}"]`)
         }
 
         if (option === 9) {
@@ -299,7 +299,7 @@ function bindFunctionButton() {
             const networkID = $("#producerregister .networkID").val()
             $("#send-transaction .contract-name").val("vote_producer.empow")
             $("#send-transaction .function-name").val("applyRegister")
-            $("#send-transaction .args").val(`[${address}, ${networkPublicKey}, ${location}, ${url}, ${networkID}]`)
+            $("#send-transaction .args").val(`["${address}", "${networkPublicKey}", "${location}", "${url}", "${networkID}"]`)
         }
 
         if (option === 10) {
@@ -309,25 +309,25 @@ function bindFunctionButton() {
             const networkID = $("#producerupdate .networkID").val()
             $("#send-transaction .contract-name").val("vote_producer.empow")
             $("#send-transaction .function-name").val("updateProducer")
-            $("#send-transaction .args").val(`[${address}, ${networkPublicKey}, ${location}, ${url}, ${networkID}]`)
+            $("#send-transaction .args").val(`["${address}", "${networkPublicKey}", "${location}", "${url}", "${networkID}"]`)
         }
 
         if (option === 11) {
             $("#send-transaction .contract-name").val("vote_producer.empow")
             $("#send-transaction .function-name").val("logInProducer")
-            $("#send-transaction .args").val(`[${address}]`)
+            $("#send-transaction .args").val(`["${address}"]`)
         }
 
         if (option === 12) {
             $("#send-transaction .contract-name").val("vote_producer.empow")
             $("#send-transaction .function-name").val("logOutProducer")
-            $("#send-transaction .args").val(`[${address}]`)
+            $("#send-transaction .args").val(`["${address}"]`)
         }
 
         if (option === 13) {
             $("#send-transaction .contract-name").val("vote_producer.empow")
             $("#send-transaction .function-name").val("candidateWithdraw")
-            $("#send-transaction .args").val(`[${address}]`)
+            $("#send-transaction .args").val(`["${address}"]`)
         }
 
         if (option === 14) {
@@ -335,7 +335,7 @@ function bindFunctionButton() {
             const voteAmount = $("#voteforproducer .voteAmount").val()
             $("#send-transaction .contract-name").val("vote_producer.empow")
             $("#send-transaction .function-name").val("vote")
-            $("#send-transaction .args").val(`[${address}, ${producerAddress}, ${voteAmount}]`)
+            $("#send-transaction .args").val(`["${address}", "${producerAddress}", "${voteAmount}"]`)
         }
 
         if (option === 15) {
@@ -343,7 +343,7 @@ function bindFunctionButton() {
             const voteAmount = $("#unvoteforproducer .voteAmount").val()
             $("#send-transaction .contract-name").val("vote_producer.empow")
             $("#send-transaction .function-name").val("unvote")
-            $("#send-transaction .args").val(`[${address}, ${producerAddress}, ${voteAmount}]`)
+            $("#send-transaction .args").val(`["${address}", "${producerAddress}", "${voteAmount}"]`)
         }
     })
 }
