@@ -40,6 +40,20 @@
             <button type="button" class="btn btn-primary unstake" data-name="unstake">Unstake</button>
             <button type="button" class="btn btn-primary withdrawstakeall" data-name="withdrawstakeall">Withdraw Stake
                 All</button>
+            <button type="button" class="btn btn-primary producerregister" data-name="producerregister">Producer
+                Register</button>
+            <button type="button" class="btn btn-primary producerupdate" data-name="producerupdate">Producer
+                Update</button>
+            <button type="button" class="btn btn-primary producerlogin" data-name="producerlogin">Producer
+                Login</button>
+            <button type="button" class="btn btn-primary producerlogout" data-name="producerlogout">Producer
+                Logout</button>
+            <button type="button" class="btn btn-primary producerwithdraw" data-name="producerwithdraw">Producer
+                Withdraw</button>
+            <button type="button" class="btn btn-primary voteforproducer" data-name="voteforproducer">Vote For
+                Producer</button>
+            <button type="button" class="btn btn-primary unvoteforproducer" data-name="unvoteforproducer">UnVote For
+                Producer</button>
 
             <div id="transfer" style="display: none;">
                 <form>
@@ -189,40 +203,148 @@
                 <form>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-send">Withdraw Stake All</button>
+                            <button type="submit" class="btn btn-primary btn-send btn-color" >Withdraw Stake All</button>
                         </div>
                     </div>
                 </form>
             </div>
-        </div>
-        <div id="send-transaction" class="card mb-3" style="display: none">
-            <br>
-            <h3 style="padding-left: 1.25rem">TEST SEND TRANSACTION</h3>
-            <form>
-                <div class="form-group row">
-                    <label for="inputName" class="col-md-12">Contract Name: </label>
-                    <div class="col-md-12">
-                        <input type="text" class="form-control contract-name" name="inputName" id="inputName">
+            <div id="producerregister" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Network Public Key: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control networkPublicKey" name="inputName" id="inputName">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputName" class="col-md-12">Function: </label>
-                    <div class="col-md-12">
-                        <input type="text" class="form-control function-name" name="inputName" id="inputName">
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Location: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control location" name="inputName" id="inputName">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputName" class="col-md-12">Argument: </label>
-                    <div class="col-md-12">
-                        <input type="text" class="form-control args" name="inputName" id="inputName">
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">URL: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control url" name="inputName" id="inputName">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary btn-send">Send Transaction</button>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Network ID: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control networkID" name="inputName" id="inputName">
+                        </div>
                     </div>
-                </div>
-            </form>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-send">Producer Register</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="producerupdate" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Network Public Key: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control networkPublicKey" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Location: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control location" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">URL: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control url" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Network ID: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control networkID" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-send">Producer
+                                Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="producerlogin" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-send btn-color">Producer Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="producerlogout" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-send btn-color">Producer Logout</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="producerwithdraw" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-send btn-color">Producer Withdraw</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="voteforproducer" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Producer Address: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control producerAddress" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Vote Amount: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control voteAmount" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-send">Vote For
+                                Producer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="unvoteforproducer" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Producer Address: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control producerAddress" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Vote Amount: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control voteAmount" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-send">UnVote For Producer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </body>
