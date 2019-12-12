@@ -39,6 +39,7 @@ function bindConnectButton() {
 
 function showSendTransactionElements() {
     $("#all-functions").show()
+    $("#send-transaction").show()
     bindOnClickFunction()
     bindFunctionButton()
     bindSummitButton()
@@ -153,7 +154,7 @@ function toggleOption() {
     $("#voteforproducer").hide()
     $("#unvoteforproducer").hide()
 
-    $("#send-transaction").hide()
+    // $("#send-transaction").hide()
 
     if (option === 0) {
         $("#transfer").show()

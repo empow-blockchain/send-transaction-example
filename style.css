@@ -6,6 +6,13 @@
 #all-functions {
     display: block;
     padding: 1.25rem;
+    float: left;
+    width: 49%;
+}
+
+#send-transaction {
+    width: 49%;
+    float: right;
 }
 
 .function {
