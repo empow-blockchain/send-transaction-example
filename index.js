@@ -254,7 +254,7 @@ function bindFunctionButton() {
             const value = $("#sellram .amount").val()
             $("#send-transaction .contract-name").val("ram.empow")
             $("#send-transaction .function-name").val("sell")
-            $("#send-transaction .args").val(`["${address}", "${address}", "${value}"]`)
+            $("#send-transaction .args").val(`["${address}", "${address}", ${value}]`)
         }
 
         if (option === 4) {
@@ -262,7 +262,7 @@ function bindFunctionButton() {
             const value = $("#buyram .amount").val()
             $("#send-transaction .contract-name").val("ram.empow")
             $("#send-transaction .function-name").val("buy")
-            $("#send-transaction .args").val(`["${address}", "${to}", "${value}"]`)
+            $("#send-transaction .args").val(`["${address}", "${to}", ${value}]`)
         }
 
         if (option === 5) {
