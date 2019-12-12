@@ -38,47 +38,11 @@ function bindConnectButton() {
 }
 
 function showSendTransactionElements() {
-    $("#send-transaction").show()
     $("#all-functions").show()
     bindOnClickFunction()
+    bindFunctionButton()
     bindSummitButton()
 }
-
-// function bindSendTransactionButton() {
-//     $(".btn-send").click(async function (e) {
-
-//         e.preventDefault()
-
-//         addAlert('primary', 'Sending...')
-
-//         const contractName = $(".contract-name").val()
-//         const functionName = $(".function-name").val()
-//         let args = $(".args").val()
-
-//         try {
-//             args = JSON.parse(args)
-//         } catch {
-//             addAlert("danger", `Argument not correct. Example: ["em", "address1", "address2", "100", "memo"]`)
-//             return;
-//         }
-
-//         const tx = window.empow.callABI(contractName, functionName, args)
-//         tx.addApprove("*", "unlimited")
-//         const handler = window.empow.signAndSend(tx)
-
-//         handler.on("pending", (hash) => {
-//             addAlert("warning", `transaction on pending: ${hash}`)
-//         })
-
-//         handler.on("failed", (error) => {
-//             addAlert("danger", `transaction failed ${error}`)
-//         })
-
-//         handler.on("success", (res) => {
-//             addAlert("success", `transaction success <br><pre>${JSON.stringify(res, null, 2)}<pre>`)
-//         })
-//     })
-// }
 
 function addAlert(type, message) {
 
@@ -180,7 +144,7 @@ function toggleOption() {
     $("#withdrawstake").hide()
     $("#unstake").hide()
     $("#withdrawstakeall").hide()
-    
+
     $("#producerregister").hide()
     $("#producerupdate").hide()
     $("#producerlogin").hide()
@@ -188,6 +152,8 @@ function toggleOption() {
     $("#producerwithdraw").hide()
     $("#voteforproducer").hide()
     $("#unvoteforproducer").hide()
+
+    $("#send-transaction").hide()
 
     if (option === 0) {
         $("#transfer").show()
@@ -252,6 +218,134 @@ function toggleOption() {
     if (option === 15) {
         $("#unvoteforproducer").show()
     }
+}
+
+function bindFunctionButton() {
+    $(".function").click(async function (e) {
+        e.preventDefault()
+        $("#send-transaction").show()
+
+        if (option === 0) {
+            const to = $("#transfer .to").val()
+            const value = $("#transfer .amount").val()
+            const memo = $("#transfer .memo").val()
+            
+            $("#send-transaction .contract-name").val("token.empow")
+            $("#send-transaction .function-name").val("transfer")
+            $("#send-transaction .args").val(`["em", ${address}, ${to}, ${value}, ${memo}]`)
+        }
+
+        if (option === 1) {
+            const to = $("#pledgegas .to").val()
+            const value = $("#pledgegas .amount").val()
+            $("#send-transaction .contract-name").val("gas.empow")
+            $("#send-transaction .function-name").val("pledge")
+            $("#send-transaction .args").val(`[${address}, ${to}, ${value}]`)
+        }
+
+        if (option === 2) {
+            const value = $("#unpledgegas .amount").val()
+            $("#send-transaction .contract-name").val("gas.empow")
+            $("#send-transaction .function-name").val("unpledge")
+            $("#send-transaction .args").val(`[${address}, ${address}, ${value}]`)
+        }
+
+        if (option === 3) {
+            const value = $("#sellram .amount").val()
+            $("#send-transaction .contract-name").val("ram.empow")
+            $("#send-transaction .function-name").val("sell")
+            $("#send-transaction .args").val(`[${address}, ${address}, ${value}]`)
+        }
+
+        if (option === 4) {
+            const to = $("#buyram .to").val()
+            const value = $("#buyram .amount").val()
+            $("#send-transaction .contract-name").val("ram.empow")
+            $("#send-transaction .function-name").val("buy")
+            $("#send-transaction .args").val(`[${address}, ${to}, ${value}]`)
+        }
+
+        if (option === 5) {
+            const value = $("#stake .amount").val()
+            $("#send-transaction .contract-name").val("stake.empow")
+            $("#send-transaction .function-name").val("stake")
+            $("#send-transaction .args").val(`[${address}, ${value}]`)
+        }
+
+        if (option === 6) {
+            const packageID = parseInt($("#withdrawstake .packageID").val())
+            $("#send-transaction .contract-name").val("stake.empow")
+            $("#send-transaction .function-name").val("withdraw")
+            $("#send-transaction .args").val(`[${address}, ${packageID}]`)
+        }
+
+        if (option === 7) {
+            const packageID = parseInt($("#unstake .packageID").val())
+            $("#send-transaction .contract-name").val("stake.empow")
+            $("#send-transaction .function-name").val("unstake")
+            $("#send-transaction .args").val(`[${address}, ${packageID}]`)
+        }
+
+        if (option === 8) {
+            $("#send-transaction .contract-name").val("stake.empow")
+            $("#send-transaction .function-name").val("withdrawAll")
+            $("#send-transaction .args").val(`[${address}]`)
+        }
+
+        if (option === 9) {
+            const networkPublicKey = $("#producerregister .producerregister").val()
+            const location = $("#producerregister .location").val()
+            const url = $("#producerregister .url").val()
+            const networkID = $("#producerregister .networkID").val()
+            $("#send-transaction .contract-name").val("vote_producer.empow")
+            $("#send-transaction .function-name").val("applyRegister")
+            $("#send-transaction .args").val(`[${address}, ${networkPublicKey}, ${location}, ${url}, ${networkID}]`)
+        }
+
+        if (option === 10) {
+            const networkPublicKey = $("#producerupdate .producerregister").val()
+            const location = $("#producerupdate .location").val()
+            const url = $("#producerupdate .url").val()
+            const networkID = $("#producerupdate .networkID").val()
+            $("#send-transaction .contract-name").val("vote_producer.empow")
+            $("#send-transaction .function-name").val("updateProducer")
+            $("#send-transaction .args").val(`[${address}, ${networkPublicKey}, ${location}, ${url}, ${networkID}]`)
+        }
+
+        if (option === 11) {
+            $("#send-transaction .contract-name").val("vote_producer.empow")
+            $("#send-transaction .function-name").val("logInProducer")
+            $("#send-transaction .args").val(`[${address}]`)
+        }
+
+        if (option === 12) {
+            $("#send-transaction .contract-name").val("vote_producer.empow")
+            $("#send-transaction .function-name").val("logOutProducer")
+            $("#send-transaction .args").val(`[${address}]`)
+        }
+
+        if (option === 13) {
+            $("#send-transaction .contract-name").val("vote_producer.empow")
+            $("#send-transaction .function-name").val("candidateWithdraw")
+            $("#send-transaction .args").val(`[${address}]`)
+        }
+
+        if (option === 14) {
+            const producerAddress = $("#voteforproducer .producerAddress").val()
+            const voteAmount = $("#voteforproducer .voteAmount").val()
+            $("#send-transaction .contract-name").val("vote_producer.empow")
+            $("#send-transaction .function-name").val("vote")
+            $("#send-transaction .args").val(`[${address}, ${producerAddress}, ${voteAmount}]`)
+        }
+
+        if (option === 15) {
+            const producerAddress = $("#unvoteforproducer .producerAddress").val()
+            const voteAmount = $("#unvoteforproducer .voteAmount").val()
+            $("#send-transaction .contract-name").val("vote_producer.empow")
+            $("#send-transaction .function-name").val("unvote")
+            $("#send-transaction .args").val(`[${address}, ${producerAddress}, ${voteAmount}]`)
+        }
+    })
 }
 
 function bindSummitButton() {
@@ -333,21 +427,7 @@ function bindSendTransactionButton(e) {
 
     const tx = window.empow.callABI("token.empow", "transfer", ["em", address, to, value, memo])
 
-    tx.addApprove("*", "unlimited")
-
-    const handler = window.empow.signAndSend(tx)
-
-    handler.on("pending", (hash) => {
-        addAlert("warning", `transaction on pending: ${hash}`)
-    })
-
-    handler.on("failed", (error) => {
-        addAlert("danger", `transaction failed ${error}`)
-    })
-
-    handler.on("success", (res) => {
-        addAlert("success", `transaction success <br><pre>${JSON.stringify(res, null, 2)}<pre>`)
-    })
+    action(tx);
 }
 
 function bindPledgeGasButton(e) {
@@ -355,26 +435,12 @@ function bindPledgeGasButton(e) {
 
     addAlert('primary', 'Sending...')
 
-    const to = $("#transfer .to").val()
-    const value = $("#transfer .amount").val()
+    const to = $("#pledgegas .to").val()
+    const value = $("#pledgegas .amount").val()
 
     const tx = window.empow.callABI("gas.empow", "pledge", [address, to, value])
 
-    tx.addApprove("*", "unlimited")
-
-    const handler = window.empow.signAndSend(tx)
-
-    handler.on("pending", (hash) => {
-        addAlert("warning", `transaction on pending: ${hash}`)
-    })
-
-    handler.on("failed", (error) => {
-        addAlert("danger", `transaction failed ${error}`)
-    })
-
-    handler.on("success", (res) => {
-        addAlert("success", `transaction success <br><pre>${JSON.stringify(res, null, 2)}<pre>`)
-    })
+    action(tx);
 }
 
 function bindUnpledgeGasButton(e) {
@@ -386,21 +452,7 @@ function bindUnpledgeGasButton(e) {
 
     const tx = window.empow.callABI("gas.empow", "unpledge", [address, address, value])
 
-    tx.addApprove("*", "unlimited")
-
-    const handler = window.empow.signAndSend(tx)
-
-    handler.on("pending", (hash) => {
-        addAlert("warning", `transaction on pending: ${hash}`)
-    })
-
-    handler.on("failed", (error) => {
-        addAlert("danger", `transaction failed ${error}`)
-    })
-
-    handler.on("success", (res) => {
-        addAlert("success", `transaction success <br><pre>${JSON.stringify(res, null, 2)}<pre>`)
-    })
+    action(tx);
 }
 
 function bindSellRamButton(e) {
@@ -412,21 +464,7 @@ function bindSellRamButton(e) {
 
     const tx = window.empow.callABI("ram.empow", "sell", [address, address, value])
 
-    tx.addApprove("*", "unlimited")
-
-    const handler = window.empow.signAndSend(tx)
-
-    handler.on("pending", (hash) => {
-        addAlert("warning", `transaction on pending: ${hash}`)
-    })
-
-    handler.on("failed", (error) => {
-        addAlert("danger", `transaction failed ${error}`)
-    })
-
-    handler.on("success", (res) => {
-        addAlert("success", `transaction success <br><pre>${JSON.stringify(res, null, 2)}<pre>`)
-    })
+    action(tx);
 }
 
 function bindBuyRamButton(e) {
@@ -439,21 +477,7 @@ function bindBuyRamButton(e) {
 
     const tx = window.empow.callABI("ram.empow", "buy", [address, to, value])
 
-    tx.addApprove("*", "unlimited")
-
-    const handler = window.empow.signAndSend(tx)
-
-    handler.on("pending", (hash) => {
-        addAlert("warning", `transaction on pending: ${hash}`)
-    })
-
-    handler.on("failed", (error) => {
-        addAlert("danger", `transaction failed ${error}`)
-    })
-
-    handler.on("success", (res) => {
-        addAlert("success", `transaction success <br><pre>${JSON.stringify(res, null, 2)}<pre>`)
-    })
+    action(tx);
 }
 
 function bindStakeButton(e) {
@@ -465,21 +489,7 @@ function bindStakeButton(e) {
 
     const tx = window.empow.callABI("stake.empow", "stake", [address, value])
 
-    tx.addApprove("*", "unlimited")
-
-    const handler = window.empow.signAndSend(tx)
-
-    handler.on("pending", (hash) => {
-        addAlert("warning", `transaction on pending: ${hash}`)
-    })
-
-    handler.on("failed", (error) => {
-        addAlert("danger", `transaction failed ${error}`)
-    })
-
-    handler.on("success", (res) => {
-        addAlert("success", `transaction success <br><pre>${JSON.stringify(res, null, 2)}<pre>`)
-    })
+    action(tx);
 }
 
 function bindWithdrawStakeButton(e) {
@@ -491,21 +501,7 @@ function bindWithdrawStakeButton(e) {
 
     const tx = window.empow.callABI("stake.empow", "withdraw", [address, packageID])
 
-    tx.addApprove("*", "unlimited")
-
-    const handler = window.empow.signAndSend(tx)
-
-    handler.on("pending", (hash) => {
-        addAlert("warning", `transaction on pending: ${hash}`)
-    })
-
-    handler.on("failed", (error) => {
-        addAlert("danger", `transaction failed ${error}`)
-    })
-
-    handler.on("success", (res) => {
-        addAlert("success", `transaction success <br><pre>${JSON.stringify(res, null, 2)}<pre>`)
-    })
+    action(tx);
 }
 
 function bindUnstakeButton(e) {
@@ -517,21 +513,7 @@ function bindUnstakeButton(e) {
 
     const tx = window.empow.callABI("stake.empow", "unstake", [address, packageID])
 
-    tx.addApprove("*", "unlimited")
-
-    const handler = window.empow.signAndSend(tx)
-
-    handler.on("pending", (hash) => {
-        addAlert("warning", `transaction on pending: ${hash}`)
-    })
-
-    handler.on("failed", (error) => {
-        addAlert("danger", `transaction failed ${error}`)
-    })
-
-    handler.on("success", (res) => {
-        addAlert("success", `transaction success <br><pre>${JSON.stringify(res, null, 2)}<pre>`)
-    })
+    action(tx);
 }
 
 function bindWithdrawAllStakeButton(e) {
@@ -541,21 +523,7 @@ function bindWithdrawAllStakeButton(e) {
 
     const tx = window.empow.callABI("stake.empow", "withdrawAll", [address])
 
-    tx.addApprove("*", "unlimited")
-
-    const handler = window.empow.signAndSend(tx)
-
-    handler.on("pending", (hash) => {
-        addAlert("warning", `transaction on pending: ${hash}`)
-    })
-
-    handler.on("failed", (error) => {
-        addAlert("danger", `transaction failed ${error}`)
-    })
-
-    handler.on("success", (res) => {
-        addAlert("success", `transaction success <br><pre>${JSON.stringify(res, null, 2)}<pre>`)
-    })
+    action(tx);
 }
 
 function bindProducerRegisterButton(e) {
@@ -570,21 +538,7 @@ function bindProducerRegisterButton(e) {
 
     const tx = window.empow.callABI("vote_producer.empow", "applyRegister", [address, networkPublicKey, location, url, networkID])
 
-    tx.addApprove("*", "unlimited")
-
-    const handler = window.empow.signAndSend(tx)
-
-    handler.on("pending", (hash) => {
-        addAlert("warning", `transaction on pending: ${hash}`)
-    })
-
-    handler.on("failed", (error) => {
-        addAlert("danger", `transaction failed ${error}`)
-    })
-
-    handler.on("success", (res) => {
-        addAlert("success", `transaction success <br><pre>${JSON.stringify(res, null, 2)}<pre>`)
-    })
+    action(tx);
 }
 
 function bindProducerUpdateButton(e) {
@@ -599,21 +553,7 @@ function bindProducerUpdateButton(e) {
 
     const tx = window.empow.callABI("vote_producer.empow", "updateProducer", [address, networkPublicKey, location, url, networkID])
 
-    tx.addApprove("*", "unlimited")
-
-    const handler = window.empow.signAndSend(tx)
-
-    handler.on("pending", (hash) => {
-        addAlert("warning", `transaction on pending: ${hash}`)
-    })
-
-    handler.on("failed", (error) => {
-        addAlert("danger", `transaction failed ${error}`)
-    })
-
-    handler.on("success", (res) => {
-        addAlert("success", `transaction success <br><pre>${JSON.stringify(res, null, 2)}<pre>`)
-    })
+    action(tx);
 }
 
 function bindProducerLoginButton(e) {
@@ -623,21 +563,7 @@ function bindProducerLoginButton(e) {
 
     const tx = window.empow.callABI("vote_producer.empow", "logInProducer", [address])
 
-    tx.addApprove("*", "unlimited")
-
-    const handler = window.empow.signAndSend(tx)
-
-    handler.on("pending", (hash) => {
-        addAlert("warning", `transaction on pending: ${hash}`)
-    })
-
-    handler.on("failed", (error) => {
-        addAlert("danger", `transaction failed ${error}`)
-    })
-
-    handler.on("success", (res) => {
-        addAlert("success", `transaction success <br><pre>${JSON.stringify(res, null, 2)}<pre>`)
-    })
+    action(tx);
 }
 
 function bindProducerLogoutButton(e) {
@@ -647,21 +573,7 @@ function bindProducerLogoutButton(e) {
 
     const tx = window.empow.callABI("vote_producer.empow", "logOutProducer", [address])
 
-    tx.addApprove("*", "unlimited")
-
-    const handler = window.empow.signAndSend(tx)
-
-    handler.on("pending", (hash) => {
-        addAlert("warning", `transaction on pending: ${hash}`)
-    })
-
-    handler.on("failed", (error) => {
-        addAlert("danger", `transaction failed ${error}`)
-    })
-
-    handler.on("success", (res) => {
-        addAlert("success", `transaction success <br><pre>${JSON.stringify(res, null, 2)}<pre>`)
-    })
+    action(tx);
 }
 
 function bindProducerWithdrawButton(e) {
@@ -671,21 +583,7 @@ function bindProducerWithdrawButton(e) {
 
     const tx = window.empow.callABI("vote_producer.empow", "candidateWithdraw", [address])
 
-    tx.addApprove("*", "unlimited")
-
-    const handler = window.empow.signAndSend(tx)
-
-    handler.on("pending", (hash) => {
-        addAlert("warning", `transaction on pending: ${hash}`)
-    })
-
-    handler.on("failed", (error) => {
-        addAlert("danger", `transaction failed ${error}`)
-    })
-
-    handler.on("success", (res) => {
-        addAlert("success", `transaction success <br><pre>${JSON.stringify(res, null, 2)}<pre>`)
-    })
+    action(tx);
 }
 
 function bindVoteForProducerButton(e) {
@@ -698,21 +596,7 @@ function bindVoteForProducerButton(e) {
 
     const tx = window.empow.callABI("vote_producer.empow", "vote", [address, producerAddress, voteAmount])
 
-    tx.addApprove("*", "unlimited")
-
-    const handler = window.empow.signAndSend(tx)
-
-    handler.on("pending", (hash) => {
-        addAlert("warning", `transaction on pending: ${hash}`)
-    })
-
-    handler.on("failed", (error) => {
-        addAlert("danger", `transaction failed ${error}`)
-    })
-
-    handler.on("success", (res) => {
-        addAlert("success", `transaction success <br><pre>${JSON.stringify(res, null, 2)}<pre>`)
-    })
+    action(tx);
 }
 
 function bindUnVoteForProducerButton(e) {
@@ -725,6 +609,10 @@ function bindUnVoteForProducerButton(e) {
 
     const tx = window.empow.callABI("vote_producer.empow", "unvote", [address, producerAddress, voteAmount])
 
+    action(tx);
+}
+
+function action(tx) {
     tx.addApprove("*", "unlimited")
 
     const handler = window.empow.signAndSend(tx)

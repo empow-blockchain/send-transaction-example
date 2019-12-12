@@ -77,7 +77,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-send">Transfer</button>
+                            <button type="submit" class="btn btn-primary function">Transfer</button>
                         </div>
                     </div>
                 </form>
@@ -98,7 +98,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-send">Pledge</button>
+                            <button type="submit" class="btn btn-primary function">Pledge</button>
                         </div>
                     </div>
                 </form>
@@ -113,7 +113,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-send">Unpledge</button>
+                            <button type="submit" class="btn btn-primary function">Unpledge</button>
                         </div>
                     </div>
                 </form>
@@ -128,7 +128,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-send">Sell Ram</button>
+                            <button type="submit" class="btn btn-primary function">Sell Ram</button>
                         </div>
                     </div>
                 </form>
@@ -149,7 +149,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-send">Sell Ram</button>
+                            <button type="submit" class="btn btn-primary function">Sell Ram</button>
                         </div>
                     </div>
                 </form>
@@ -164,7 +164,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-send">Stake EM</button>
+                            <button type="submit" class="btn btn-primary function">Stake EM</button>
                         </div>
                     </div>
                 </form>
@@ -179,7 +179,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-send">Withdraw Stake</button>
+                            <button type="submit" class="btn btn-primary function">Withdraw Stake</button>
                         </div>
                     </div>
                 </form>
@@ -194,7 +194,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-send">Unstake</button>
+                            <button type="submit" class="btn btn-primary function">Unstake</button>
                         </div>
                     </div>
                 </form>
@@ -203,7 +203,7 @@
                 <form>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-send btn-color" >Withdraw Stake All</button>
+                            <button type="submit" class="btn btn-primary function" >Withdraw Stake All</button>
                         </div>
                     </div>
                 </form>
@@ -236,7 +236,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-send">Producer Register</button>
+                            <button type="submit" class="btn btn-primary function">Producer Register</button>
                         </div>
                     </div>
                 </form>
@@ -269,7 +269,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-send">Producer
+                            <button type="submit" class="btn btn-primary function">Producer
                                 Update</button>
                         </div>
                     </div>
@@ -279,7 +279,7 @@
                 <form>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-send btn-color">Producer Login</button>
+                            <button type="submit" class="btn btn-primary function">Producer Login</button>
                         </div>
                     </div>
                 </form>
@@ -288,7 +288,7 @@
                 <form>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-send btn-color">Producer Logout</button>
+                            <button type="submit" class="btn btn-primary function">Producer Logout</button>
                         </div>
                     </div>
                 </form>
@@ -297,7 +297,7 @@
                 <form>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-send btn-color">Producer Withdraw</button>
+                            <button type="submit" class="btn btn-primary function">Producer Withdraw</button>
                         </div>
                     </div>
                 </form>
@@ -318,7 +318,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-send">Vote For
+                            <button type="submit" class="btn btn-primary function">Vote For
                                 Producer</button>
                         </div>
                     </div>
@@ -340,11 +340,40 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-send">UnVote For Producer</button>
+                            <button type="submit" class="btn btn-primary function">UnVote For Producer</button>
                         </div>
                     </div>
                 </form>
             </div>
+        </div>
+        <div id="send-transaction" class="card mb-3" style="display: none">
+            <br>
+            <h3 style="padding-left: 1.25rem">TEST SEND TRANSACTION</h3>
+            <form>
+                <div class="form-group row">
+                    <label for="inputName" class="col-md-12">Contract Name: </label>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control contract-name" name="inputName" id="inputName" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputName" class="col-md-12">Function: </label>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control function-name" name="inputName" id="inputName" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputName" class="col-md-12">Argument: </label>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control args" name="inputName" id="inputName" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary btn-send">Send Transaction</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </body>
