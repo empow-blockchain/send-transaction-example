@@ -132,6 +132,36 @@ function bindOnClickFunction() {
         option = 15;
         toggleOption()
     })
+
+    $(".withdrawblockreward").click(async function (e) {
+        option = 16;
+        toggleOption()
+    })
+
+    $(".socialpost").click(async function (e) {
+        option = 17;
+        toggleOption()
+    })
+
+    $(".sociallike").click(async function (e) {
+        option = 18;
+        toggleOption()
+    })
+
+    $(".socialcomment").click(async function (e) {
+        option = 19;
+        toggleOption()
+    })
+
+    $(".socialreport").click(async function (e) {
+        option = 20;
+        toggleOption()
+    })
+
+    $(".socialwithdrawpost").click(async function (e) {
+        option = 21;
+        toggleOption()
+    })
 }
 
 function toggleOption() {
@@ -153,6 +183,13 @@ function toggleOption() {
     $("#producerwithdraw").hide()
     $("#voteforproducer").hide()
     $("#unvoteforproducer").hide()
+
+    $("#withdrawblockreward").hide()
+    $("#socialpost").hide()
+    $("#sociallike").hide()
+    $("#socialcomment").hide()
+    $("#socialreport").hide()
+    $("#socialwithdrawpost").hide()
 
     // $("#send-transaction").hide()
 
@@ -219,6 +256,30 @@ function toggleOption() {
     if (option === 15) {
         $("#unvoteforproducer").show()
     }
+
+    if (option === 16) {
+        $("#withdrawblockreward").show()
+    }
+
+    if (option === 17) {
+        $("#socialpost").show()
+    }
+
+    if (option === 18) {
+        $("#sociallike").show()
+    }
+
+    if (option === 19) {
+        $("#socialcomment").show()
+    }
+
+    if (option === 20) {
+        $("#socialreport").show()
+    }
+
+    if (option === 21) {
+        $("#socialwithdrawpost").show()
+    }
 }
 
 function bindFunctionButton() {
@@ -230,7 +291,7 @@ function bindFunctionButton() {
             const to = $("#transfer .to").val()
             const value = $("#transfer .amount").val()
             const memo = $("#transfer .memo").val()
-            
+
             $("#send-transaction .contract-name").val("token.empow")
             $("#send-transaction .function-name").val("transfer")
             $("#send-transaction .args").val(`["em", "${address}", "${to}", "${value}", "${memo}"]`)
@@ -346,82 +407,192 @@ function bindFunctionButton() {
             $("#send-transaction .function-name").val("unvote")
             $("#send-transaction .args").val(`["${address}", "${producerAddress}", "${voteAmount}"]`)
         }
+
+        if (option === 16) {
+            const amount = $("#withdrawblockreward .amount").val()
+
+            $("#send-transaction .contract-name").val("bonus.empow")
+            $("#send-transaction .function-name").val("exchangeEMPOW")
+            $("#send-transaction .args").val(`["${address}", "${amount}"]`)
+        }
+
+        if (option === 17) {
+            const title = $("#socialpost .title").val()
+            const data = $("#socialpost .data").val()
+            const country = $("#socialpost .country").val()
+            var type = ''
+            var checkbox = document.getElementsByName("socialpost");
+            for (var i = 0; i < checkbox.length; i++) {
+                if (checkbox[i].checked === true) {
+                    type = checkbox[i].value;
+                }
+            }
+
+            var tagContent = $("#socialpost .tag").val();
+            tagContent = tagContent.split(",")
+
+            var tag = "["
+            for (let j = 0; j < tagContent.length; j++) {
+                tag += `"${tagContent[j].trim()}",`
+            }
+            tag = tag.substring(0, tag.length - 1)
+            tag += "]"
+
+            $("#send-transaction .contract-name").val("social.empow")
+            $("#send-transaction .function-name").val("post")
+            $("#send-transaction .args").val(`["${address}", "${title}", {type: ${type},data: ${data},country: ${country}}, ${tag}]`)
+        }
+
+        if (option === 18) {
+            const postID = $("#sociallike .postID").val()
+
+            $("#send-transaction .contract-name").val("social.empow")
+            $("#send-transaction .function-name").val("like")
+            $("#send-transaction .args").val(`["${address}", "${postID}"]`)
+        }
+
+        if (option === 19) {
+            const postID = $("#socialcomment .postID").val()
+            const parentId = $("#socialcomment .parentId").val()
+            const content = $("#socialcomment .content").val()
+            var type = ''
+            var checkbox = document.getElementsByName("socialcomment");
+            for (var i = 0; i < checkbox.length; i++) {
+                if (checkbox[i].checked === true) {
+                    type = checkbox[i].value;
+                }
+            }
+
+            $("#send-transaction .contract-name").val("social.empow")
+            $("#send-transaction .function-name").val("comment")
+            $("#send-transaction .args").val(`["${address}", "${postID}", ${type}, ${parentId}, ${content}]`)
+        }
+
+        if (option === 20) {
+            const postID = $("#socialreport .postID").val()
+            const reportTag = $("#socialreport .reportTag").val()
+
+            $("#send-transaction .contract-name").val("social.empow")
+            $("#send-transaction .function-name").val("report")
+            $("#send-transaction .args").val(`["${address}", "${postID}", "${reportTag}"]`)
+        }
+
+        if (option === 21) {
+            const postID = $("#socialwithdrawpost .postID").val()
+
+            $("#send-transaction .contract-name").val("social.empow")
+            $("#send-transaction .function-name").val("likeWithdraw")
+            $("#send-transaction .args").val(`["${postID}"]`)
+        }
     })
 }
 
 function bindSummitButton() {
     $(".btn-send").click(async function (e) {
+        e.preventDefault()
+        addAlert('primary', 'Sending...')
+
         if (option === 0) {
-            bindSendTransactionButton(e)
+            bindSendTransactionButton()
         }
 
         if (option === 1) {
-            bindPledgeGasButton(e)
+            bindPledgeGasButton()
         }
 
         if (option === 2) {
-            bindUnpledgeGasButton(e)
+            bindUnpledgeGasButton()
         }
 
         if (option === 3) {
-            bindSellRamButton(e)
+            bindSellRamButton()
         }
 
         if (option === 4) {
-            bindBuyRamButton(e)
+            bindBuyRamButton()
         }
 
         if (option === 5) {
-            bindStakeButton(e)
+            bindStakeButton()
         }
 
         if (option === 6) {
-            bindWithdrawStakeButton(e)
+            bindWithdrawStakeButton()
         }
 
         if (option === 7) {
-            bindUnstakeButton(e)
+            bindUnstakeButton()
         }
 
         if (option === 8) {
-            bindWithdrawAllStakeButton(e)
+            bindWithdrawAllStakeButton()
         }
 
         if (option === 9) {
-            bindProducerRegisterButton(e)
+            bindProducerRegisterButton()
         }
 
         if (option === 10) {
-            bindProducerUpdateButton(e)
+            bindProducerUpdateButton()
         }
 
         if (option === 11) {
-            bindProducerLoginButton(e)
+            bindProducerLoginButton()
         }
 
         if (option === 12) {
-            bindProducerLogoutButton(e)
+            bindProducerLogoutButton()
         }
 
         if (option === 13) {
-            bindProducerWithdrawButton(e)
+            bindProducerWithdrawButton()
         }
 
         if (option === 14) {
-            bindVoteForProducerButton(e)
+            bindVoteForProducerButton()
         }
 
         if (option === 15) {
-            bindUnVoteForProducerButton(e)
+            bindUnVoteForProducerButton()
+        }
+
+        if (option === 16) {
+            bindWithdrawBlockRewardButton()
+        }
+
+        if (option === 17) {
+            bindSocialPostButton()
+        }
+
+        if (option === 18) {
+            bindSocialLikeButton()
+        }
+
+        if (option === 19) {
+            bindSocialCommentButton()
+        }
+
+        if (option === 20) {
+            bindSocialReportButton()
+        }
+
+        if (option === 21) {
+            bindSocialWithdrawPostButton()
+        }
+    })
+
+    $(".btn-country").click(async function (e) {
+        e.preventDefault()
+        if ($('#socialpost .ip').val()) {
+            var ip = $('#socialpost .ip').val();
+            $.getJSON("https://cors-anywhere.herokuapp.com/http://www.geoplugin.net/json.gp?ip=" + ip, function (response) {
+                $('#socialpost .country').val(response.geoplugin_countryName)
+            });
         }
     })
 }
 
-function bindSendTransactionButton(e) {
-    e.preventDefault()
-
-    addAlert('primary', 'Sending...')
-
+function bindSendTransactionButton() {
     const to = $("#transfer .to").val()
     const value = $("#transfer .amount").val()
     const memo = $("#transfer .memo").val()
@@ -431,11 +602,7 @@ function bindSendTransactionButton(e) {
     action(tx);
 }
 
-function bindPledgeGasButton(e) {
-    e.preventDefault()
-
-    addAlert('primary', 'Sending...')
-
+function bindPledgeGasButton() {
     const to = $("#pledgegas .to").val()
     const value = $("#pledgegas .amount").val()
 
@@ -444,11 +611,7 @@ function bindPledgeGasButton(e) {
     action(tx);
 }
 
-function bindUnpledgeGasButton(e) {
-    e.preventDefault()
-
-    addAlert('primary', 'Sending...')
-
+function bindUnpledgeGasButton() {
     const value = $("#unpledgegas .amount").val()
 
     const tx = window.empow.callABI("gas.empow", "unpledge", [address, address, value])
@@ -456,11 +619,7 @@ function bindUnpledgeGasButton(e) {
     action(tx);
 }
 
-function bindSellRamButton(e) {
-    e.preventDefault()
-
-    addAlert('primary', 'Sending...')
-
+function bindSellRamButton() {
     const value = $("#sellram .amount").val()
 
     const tx = window.empow.callABI("ram.empow", "sell", [address, address, value])
@@ -468,11 +627,7 @@ function bindSellRamButton(e) {
     action(tx);
 }
 
-function bindBuyRamButton(e) {
-    e.preventDefault()
-
-    addAlert('primary', 'Sending...')
-
+function bindBuyRamButton() {
     const to = $("#buyram .to").val()
     const value = $("#buyram .amount").val()
 
@@ -481,11 +636,7 @@ function bindBuyRamButton(e) {
     action(tx);
 }
 
-function bindStakeButton(e) {
-    e.preventDefault()
-
-    addAlert('primary', 'Sending...')
-
+function bindStakeButton() {
     const value = $("#stake .amount").val()
 
     const tx = window.empow.callABI("stake.empow", "stake", [address, value])
@@ -493,11 +644,7 @@ function bindStakeButton(e) {
     action(tx);
 }
 
-function bindWithdrawStakeButton(e) {
-    e.preventDefault()
-
-    addAlert('primary', 'Sending...')
-
+function bindWithdrawStakeButton() {
     const packageID = parseInt($("#withdrawstake .packageID").val())
 
     const tx = window.empow.callABI("stake.empow", "withdraw", [address, packageID])
@@ -505,11 +652,7 @@ function bindWithdrawStakeButton(e) {
     action(tx);
 }
 
-function bindUnstakeButton(e) {
-    e.preventDefault()
-
-    addAlert('primary', 'Sending...')
-
+function bindUnstakeButton() {
     const packageID = parseInt($("#unstake .packageID").val())
 
     const tx = window.empow.callABI("stake.empow", "unstake", [address, packageID])
@@ -517,21 +660,13 @@ function bindUnstakeButton(e) {
     action(tx);
 }
 
-function bindWithdrawAllStakeButton(e) {
-    e.preventDefault()
-
-    addAlert('primary', 'Sending...')
-
+function bindWithdrawAllStakeButton() {
     const tx = window.empow.callABI("stake.empow", "withdrawAll", [address])
 
     action(tx);
 }
 
-function bindProducerRegisterButton(e) {
-    e.preventDefault()
-
-    addAlert('primary', 'Sending...')
-
+function bindProducerRegisterButton() {
     const networkPublicKey = $("#producerregister .producerregister").val()
     const location = $("#producerregister .location").val()
     const url = $("#producerregister .url").val()
@@ -542,11 +677,7 @@ function bindProducerRegisterButton(e) {
     action(tx);
 }
 
-function bindProducerUpdateButton(e) {
-    e.preventDefault()
-
-    addAlert('primary', 'Sending...')
-
+function bindProducerUpdateButton() {
     const networkPublicKey = $("#producerupdate .producerregister").val()
     const location = $("#producerupdate .location").val()
     const url = $("#producerupdate .url").val()
@@ -557,41 +688,25 @@ function bindProducerUpdateButton(e) {
     action(tx);
 }
 
-function bindProducerLoginButton(e) {
-    e.preventDefault()
-
-    addAlert('primary', 'Sending...')
-
+function bindProducerLoginButton() {
     const tx = window.empow.callABI("vote_producer.empow", "logInProducer", [address])
 
     action(tx);
 }
 
-function bindProducerLogoutButton(e) {
-    e.preventDefault()
-
-    addAlert('primary', 'Sending...')
-
+function bindProducerLogoutButton() {
     const tx = window.empow.callABI("vote_producer.empow", "logOutProducer", [address])
 
     action(tx);
 }
 
-function bindProducerWithdrawButton(e) {
-    e.preventDefault()
-
-    addAlert('primary', 'Sending...')
-
+function bindProducerWithdrawButton() {
     const tx = window.empow.callABI("vote_producer.empow", "candidateWithdraw", [address])
 
     action(tx);
 }
 
-function bindVoteForProducerButton(e) {
-    e.preventDefault()
-
-    addAlert('primary', 'Sending...')
-
+function bindVoteForProducerButton() {
     const producerAddress = $("#voteforproducer .producerAddress").val()
     const voteAmount = $("#voteforproducer .voteAmount").val()
 
@@ -601,14 +716,90 @@ function bindVoteForProducerButton(e) {
 }
 
 function bindUnVoteForProducerButton(e) {
-    e.preventDefault()
-
-    addAlert('primary', 'Sending...')
-
     const producerAddress = $("#unvoteforproducer .producerAddress").val()
     const voteAmount = $("#unvoteforproducer .voteAmount").val()
 
     const tx = window.empow.callABI("vote_producer.empow", "unvote", [address, producerAddress, voteAmount])
+
+    action(tx);
+}
+
+function bindWithdrawBlockRewardButton() {
+    const amount = $("#withdrawblockreward .amount").val()
+
+    const tx = window.empow.callABI("bonus.empow", "exchangeEMPOW", [address, amount])
+
+    action(tx);
+}
+
+function bindSocialPostButton() {
+    const title = $("#socialpost .title").val()
+    const data = $("#socialpost .data").val()
+    const country = $("#socialpost .country").val()
+    var type = ''
+    var checkbox = document.getElementsByName("socialpost");
+    for (var i = 0; i < checkbox.length; i++) {
+        if (checkbox[i].checked === true) {
+            type = checkbox[i].value;
+        }
+    }
+    const content = {
+        type: type,
+        data: data,
+        country: country
+    }
+
+    var tagContent = $("#socialpost .tag").val();
+    tagContent = tagContent.split(",")
+
+    var tag = []
+    for (let j = 0; j < tagContent.length; j++) {
+        tag.push(tagContent[j].trim())
+    }
+    const tx = window.empow.callABI("social.empow", "post", [address, title, content, tag])
+
+    action(tx);
+}
+
+function bindSocialLikeButton() {
+    const postID = $("#sociallike .postID").val()
+
+    const tx = window.empow.callABI("social.empow", "like", [address, postID])
+
+    action(tx);
+}
+
+function bindSocialCommentButton() {
+    const postID = $("#socialcomment .postID").val()
+    const parentId = $("#socialcomment .parentId").val()
+    const content = $("#socialcomment .content").val()
+
+    var type = ''
+    var checkbox = document.getElementsByName("socialcomment");
+    for (var i = 0; i < checkbox.length; i++) {
+        if (checkbox[i].checked === true) {
+            type = checkbox[i].value;
+        }
+    }
+
+    const tx = window.empow.callABI("social.empow", "comment", [address, postID, type, parentId, content])
+
+    action(tx);
+}
+
+function bindSocialReportButton() {
+    const postID = $("#socialreport .postID").val()
+    const reportTag = $("#socialreport .reportTag").val()
+
+    const tx = window.empow.callABI("social.empow", "report", [address, postID, reportTag])
+
+    action(tx);
+}
+
+function bindSocialWithdrawPostButton() {
+    const postID = $("#socialwithdrawpost .postID").val()
+
+    const tx = window.empow.callABI("social.empow", "likeWithdraw", [postID])
 
     action(tx);
 }

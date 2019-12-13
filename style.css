@@ -24,3 +24,15 @@
     margin-right: 15px;
     margin-top: 15px;
 }
+
+.waper {
+    display: flex;
+}
+
+.checkbox {
+    margin-left: 1.25rem;
+}
+
+.btn-country {
+    background-color: palevioletred
+}
