@@ -140,6 +140,16 @@ function bindOnClickFunction() {
 
     $(".socialpost").click(async function (e) {
         option = 17;
+
+        axios.get(`https://ipinfo.io/json`)
+            .then(res => {
+                $("#socialpost .country").val(res.data.country)
+                $("#socialpost .city").val(res.data.city)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
         toggleOption()
     })
 
@@ -420,6 +430,7 @@ function bindFunctionButton() {
             const title = $("#socialpost .title").val()
             const data = $("#socialpost .data").val()
             const country = $("#socialpost .country").val()
+            const city = $("#socialpost .city").val()
             var type = ''
             var checkbox = document.getElementsByName("socialpost");
             for (var i = 0; i < checkbox.length; i++) {
@@ -440,7 +451,7 @@ function bindFunctionButton() {
 
             $("#send-transaction .contract-name").val("social.empow")
             $("#send-transaction .function-name").val("post")
-            $("#send-transaction .args").val(`["${address}", "${title}", {type: ${type},data: ${data},country: ${country}}, ${tag}]`)
+            $("#send-transaction .args").val(`["${address}", "${title}", {type: ${type},data: ${data},country: ${country}, city: ${city}}, ${tag}]`)
         }
 
         if (option === 18) {
@@ -578,16 +589,6 @@ function bindSummitButton() {
 
         if (option === 21) {
             bindSocialWithdrawPostButton()
-        }
-    })
-
-    $(".btn-country").click(async function (e) {
-        e.preventDefault()
-        if ($('#socialpost .ip').val()) {
-            var ip = $('#socialpost .ip').val();
-            $.getJSON("https://cors-anywhere.herokuapp.com/http://www.geoplugin.net/json.gp?ip=" + ip, function (response) {
-                $('#socialpost .country').val(response.geoplugin_countryName)
-            });
         }
     })
 }
@@ -736,6 +737,7 @@ function bindSocialPostButton() {
     const title = $("#socialpost .title").val()
     const data = $("#socialpost .data").val()
     const country = $("#socialpost .country").val()
+    const city = $("#socialpost .city").val()
     var type = ''
     var checkbox = document.getElementsByName("socialpost");
     for (var i = 0; i < checkbox.length; i++) {
@@ -746,7 +748,8 @@ function bindSocialPostButton() {
     const content = {
         type: type,
         data: data,
-        country: country
+        country: country,
+        city: city
     }
 
     var tagContent = $("#socialpost .tag").val();

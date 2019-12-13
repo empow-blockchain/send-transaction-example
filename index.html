@@ -17,6 +17,8 @@
     <script src="index.js"></script>
     <!-- OPEN INDEX.JS TO SEE SCRIPT EXAMPLE -->
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 </head>
 
 <body>
@@ -407,21 +409,16 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="inputName" class="col-md-12">IP: </label>
+                        <label for="inputName" class="col-md-12">Country: </label>
                         <div class="col-md-12">
-                            <input type="text" class="form-control ip" name="inputName" id="inputName">
-                        </div>
-                        <p class="col-md-12">If you don't know your ip get it here quickly : <a
-                                href="http://www.whatsmyip.org/" target="_blank">http://www.whatsmyip.org/</a>
-                        <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-country">Get country of IP</button>
+                            <input type="text" class="form-control country" name="inputName" id="inputName" disabled>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="inputName" class="col-md-12">Country: </label>
+                        <label for="inputName" class="col-md-12">City: </label>
                         <div class="col-md-12">
-                            <input type="text" class="form-control country" name="inputName" id="inputName" disabled>
+                            <input type="text" class="form-control city" name="inputName" id="inputName" disabled>
                         </div>
                     </div>
 
