@@ -172,6 +172,31 @@ function bindOnClickFunction() {
         option = 21;
         toggleOption()
     })
+
+    $(".createtoken").click(async function (e) {
+        option = 22;
+        toggleOption()
+    })
+
+    $(".issuetoken").click(async function (e) {
+        option = 23;
+        toggleOption()
+    })
+
+    $(".transfertoken").click(async function (e) {
+        option = 24;
+        toggleOption()
+    })
+
+    $(".setcode").click(async function (e) {
+        option = 25;
+        toggleOption()
+    })
+
+    $(".updatecode").click(async function (e) {
+        option = 26;
+        toggleOption()
+    })
 }
 
 function toggleOption() {
@@ -200,6 +225,13 @@ function toggleOption() {
     $("#socialcomment").hide()
     $("#socialreport").hide()
     $("#socialwithdrawpost").hide()
+
+    $("#createtoken").hide()
+    $("#issuetoken").hide()
+    $("#transfertoken").hide()
+
+    $("#setcode").hide()
+    $("#updatecode").hide()
 
     // $("#send-transaction").hide()
 
@@ -290,6 +322,26 @@ function toggleOption() {
     if (option === 21) {
         $("#socialwithdrawpost").show()
     }
+
+    if (option === 22) {
+        $("#createtoken").show()
+    }
+
+    if (option === 23) {
+        $("#issuetoken").show()
+    }
+
+    if (option === 24) {
+        $("#transfertoken").show()
+    }
+
+    if (option === 25) {
+        $("#setcode").show()
+    }
+
+    if (option === 26) {
+        $("#updatecode").show()
+    }
 }
 
 function bindFunctionButton() {
@@ -365,13 +417,13 @@ function bindFunctionButton() {
         }
 
         if (option === 9) {
-            const networkPublicKey = $("#producerregister .producerregister").val()
+            const networkPublicKey = $("#producerregister .networkPublicKey").val()
             const location = $("#producerregister .location").val()
             const url = $("#producerregister .url").val()
             const networkID = $("#producerregister .networkID").val()
             $("#send-transaction .contract-name").val("vote_producer.empow")
             $("#send-transaction .function-name").val("applyRegister")
-            $("#send-transaction .args").val(`["${address}", "${networkPublicKey}", "${location}", "${url}", "${networkID}"]`)
+            $("#send-transaction .args").val(`["${address}", "${networkPublicKey}", "${location}", "${url}", "${networkID}", true]`)
         }
 
         if (option === 10) {
@@ -495,6 +547,57 @@ function bindFunctionButton() {
             $("#send-transaction .function-name").val("likeWithdraw")
             $("#send-transaction .args").val(`["${postID}"]`)
         }
+
+        if (option === 22) {
+            const symbol = $("#createtoken .symbol").val()
+            const totalSupply = $("#createtoken .totalSupply").val()
+            const fullname = $("#createtoken .fullname").val()
+
+            var canTransfer = document.getElementsByName("canTransfer");
+            var onlyIssuerCanTransfer = document.getElementsByName("onlyIssuerCanTransfer");
+
+            $("#send-transaction .contract-name").val("token.empow")
+            $("#send-transaction .function-name").val("create")
+            $("#send-transaction .args").val(`["${symbol}", "${address}", ${totalSupply}, {fullname: ${fullname}, canTransfer: ${canTransfer[0].checked}, onlyIssuerCanTransfer: ${onlyIssuerCanTransfer[0].checked}}]`)
+        }
+
+        if (option === 23) {
+            const symbol = $("#issuetoken .symbol").val()
+            const issueToAddress = $("#issuetoken .issueToAddress").val()
+            const amount = $("#issuetoken .amount").val()
+
+            $("#send-transaction .contract-name").val("token.empow")
+            $("#send-transaction .function-name").val("issue")
+            $("#send-transaction .args").val(`["${symbol}", "${issueToAddress}", "${amount}"]`)
+        }
+
+        if (option === 24) {
+            const symbol = $("#transfertoken .symbol").val()
+            const to = $("#transfertoken .to").val()
+            const amount = $("#transfertoken .amount").val()
+            const memo = $("#transfertoken .memo").val()
+
+            $("#send-transaction .contract-name").val("token.empow")
+            $("#send-transaction .function-name").val("transfer")
+            $("#send-transaction .args").val(`["${symbol}", "${address}", "${to}", "${amount}", "${memo}"]`)
+        }
+
+        if (option === 25) {
+            const code = $("#setcode .code").val()
+
+            $("#send-transaction .contract-name").val("system.empow")
+            $("#send-transaction .function-name").val("setCode")
+            $("#send-transaction .args").val(`["${code}"]`)
+        }
+
+        if (option === 26) {
+            const code = $("#updatecode .code").val()
+            const contractName = $("#updatecode .contractName").val()
+
+            $("#send-transaction .contract-name").val("system.empow")
+            $("#send-transaction .function-name").val("updateCode")
+            $("#send-transaction .args").val(`["${code}", "${contractName}"]`)
+        }
     })
 }
 
@@ -590,6 +693,26 @@ function bindSummitButton() {
         if (option === 21) {
             bindSocialWithdrawPostButton()
         }
+
+        if (option === 22) {
+            bindCreateTokenButton()
+        }
+
+        if (option === 23) {
+            bindIssueTokenButton()
+        }
+
+        if (option === 24) {
+            bindTransferTokenButton()
+        }
+
+        if (option === 25) {
+            bindSetCodeButton()
+        }
+
+        if (option === 26) {
+            bindUpdateCodeButton()
+        }
     })
 }
 
@@ -668,12 +791,14 @@ function bindWithdrawAllStakeButton() {
 }
 
 function bindProducerRegisterButton() {
-    const networkPublicKey = $("#producerregister .producerregister").val()
+    const networkPublicKey = $("#producerregister .networkPublicKey").val()
     const location = $("#producerregister .location").val()
     const url = $("#producerregister .url").val()
     const networkID = $("#producerregister .networkID").val()
 
-    const tx = window.empow.callABI("vote_producer.empow", "applyRegister", [address, networkPublicKey, location, url, networkID])
+    const tx = window.empow.callABI("vote_producer.empow", "applyRegister", [address, networkPublicKey, location, url, networkID, true])
+
+    console.log(tx)
 
     action(tx);
 }
@@ -806,6 +931,64 @@ function bindSocialWithdrawPostButton() {
 
     action(tx);
 }
+
+function bindCreateTokenButton() {
+    const symbol = $("#createtoken .symbol").val()
+    const totalSupply = $("#createtoken .totalSupply").val()
+    const fullname = $("#createtoken .fullname").val()
+
+    var canTransfer = document.getElementsByName("canTransfer");
+    var onlyIssuerCanTransfer = document.getElementsByName("onlyIssuerCanTransfer");
+
+    var config = {
+        fullname: fullname,
+        canTransfer: canTransfer[0].checked,
+        onlyIssuerCanTransfer: onlyIssuerCanTransfer[0].checked
+    }
+
+    const tx = window.empow.callABI("token.empow", "create", [symbol, address, parseInt(totalSupply), config])
+
+    action(tx);
+}
+
+function bindIssueTokenButton() {
+    const symbol = $("#issuetoken .symbol").val()
+    const issueToAddress = $("#issuetoken .issueToAddress").val()
+    const amount = $("#issuetoken .amount").val()
+
+    const tx = window.empow.callABI("token.empow", "issue", [symbol, issueToAddress, amount])
+
+    action(tx);
+}
+
+function bindTransferTokenButton() {
+    const symbol = $("#transfertoken .symbol").val()
+    const to = $("#transfertoken .to").val()
+    const amount = $("#transfertoken .amount").val()
+    const memo = $("#transfertoken .memo").val()
+
+    const tx = window.empow.callABI("token.empow", "transfer", [symbol, address, to, amount, memo])
+
+    action(tx);
+}
+
+function bindSetCodeButton() {
+    const code = $("#setcode .code").val()
+
+    const tx = window.empow.callABI("system.empow", "setCode", [code])
+
+    action(tx);
+}
+
+function bindUpdateCodeButton() {
+    const code = $("#updatecode .code").val()
+    const contractName = $("#updatecode .contractName").val()
+
+    const tx = window.empow.callABI("system.empow", "updateCode", [code, contractName])
+
+    action(tx);
+}
+
 
 function action(tx) {
     tx.addApprove("*", "unlimited")
