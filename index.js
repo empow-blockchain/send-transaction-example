@@ -197,6 +197,21 @@ function bindOnClickFunction() {
         option = 26;
         toggleOption()
     })
+
+    $(".socialupdateprofile").click(async function (e) {
+        option = 27;
+        toggleOption()
+    })
+
+    $(".socialfollow").click(async function (e) {
+        option = 28;
+        toggleOption()
+    })
+
+    $(".socialunfollow").click(async function (e) {
+        option = 29;
+        toggleOption()
+    })
 }
 
 function toggleOption() {
@@ -232,6 +247,10 @@ function toggleOption() {
 
     $("#setcode").hide()
     $("#updatecode").hide()
+
+    $("#socialupdateprofile").hide()
+    $("#socialfollow").hide()
+    $("#socialunfollow").hide()
 
     // $("#send-transaction").hide()
 
@@ -341,6 +360,18 @@ function toggleOption() {
 
     if (option === 26) {
         $("#updatecode").show()
+    }
+
+    if (option === 27) {
+        $("#socialupdateprofile").show()
+    }
+
+    if (option === 28) {
+        $("#socialfollow").show()
+    }
+
+    if (option === 29) {
+        $("#socialunfollow").show()
     }
 }
 
@@ -598,6 +629,34 @@ function bindFunctionButton() {
             $("#send-transaction .function-name").val("updateCode")
             $("#send-transaction .args").val(`["${code}", "${contractName}"]`)
         }
+
+        if (option === 27) {
+            const firstName = $("#socialupdateprofile .firstName").val()
+            const lastName = $("#socialupdateprofile .lastName").val()
+            const age = $("#socialupdateprofile .age").val()
+            const job = $("#socialupdateprofile .job").val()
+            const birthday = $("#socialupdateprofile .birthday").val()
+
+            $("#send-transaction .contract-name").val("social.empow")
+            $("#send-transaction .function-name").val("updateProfile")
+            $("#send-transaction .args").val(`["${address}", {firstName: ${firstName}, lastName: ${lastName}, age: ${age}, job: ${job}, birthday: ${birthday}}]`)
+        }
+
+        if (option === 28) {
+            const targetAddress = $("#socialfollow .targetAddress").val()
+
+            $("#send-transaction .contract-name").val("social.empow")
+            $("#send-transaction .function-name").val("follow")
+            $("#send-transaction .args").val(`["${address}", "${targetAddress}"]`)
+        }
+
+        if (option === 29) {
+            const targetAddress = $("#socialunfollow .targetAddress").val()
+
+            $("#send-transaction .contract-name").val("social.empow")
+            $("#send-transaction .function-name").val("unfollow")
+            $("#send-transaction .args").val(`["${address}", "${targetAddress}"]`)
+        }
     })
 }
 
@@ -712,6 +771,18 @@ function bindSummitButton() {
 
         if (option === 26) {
             bindUpdateCodeButton()
+        }
+
+        if (option === 27) {
+            bindSocialUpdateProfileButton()
+        }
+
+        if (option === 28) {
+            bindSocialFollowButton()
+        }
+
+        if (option === 29) {
+            bindSocialUnfollowButton()
         }
     })
 }
@@ -989,6 +1060,41 @@ function bindUpdateCodeButton() {
     action(tx);
 }
 
+function bindSocialUpdateProfileButton() {
+    const firstName = $("#socialupdateprofile .firstName").val()
+    const lastName = $("#socialupdateprofile .lastName").val()
+    const age = $("#socialupdateprofile .age").val()
+    const job = $("#socialupdateprofile .job").val()
+    const birthday = $("#socialupdateprofile .birthday").val()
+
+    var info = {
+        firstName: firstName,
+        lastName: lastName,
+        age: age,
+        job: job,
+        birthday: birthday
+    }
+
+    const tx = window.empow.callABI("social.empow", "updateProfile", [address, info])
+
+    action(tx);
+}
+
+function bindSocialFollowButton() {
+    const targetAddress = $("#socialfollow .targetAddress").val()
+
+    const tx = window.empow.callABI("social.empow", "follow", [address, targetAddress])
+
+    action(tx);
+}
+
+function bindSocialUnfollowButton() {
+    const targetAddress = $("#socialunfollow .targetAddress").val()
+
+    const tx = window.empow.callABI("social.empow", "unfollow", [address, targetAddress])
+
+    action(tx);
+}
 
 function action(tx) {
     tx.addApprove("*", "unlimited")

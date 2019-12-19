@@ -70,10 +70,11 @@
                 Token</button>
             <button type="button" class="btn btn-primary transfertoken" data-name="transfertoken">Transfer
                 Token</button>
-
             <button type="button" class="btn btn-primary setcode" data-name="setcode">Set Code</button>
-
             <button type="button" class="btn btn-primary updatecode" data-name="updatecode">Update Code</button>
+            <button type="button" class="btn btn-primary socialupdateprofile" data-name="socialupdateprofile">Social Update Profile</button>
+            <button type="button" class="btn btn-primary socialfollow" data-name="socialfollow">Social Follow</button>
+            <button type="button" class="btn btn-primary socialunfollow" data-name="socialunfollow">Social Unfollow</button>
 
             <div id="transfer" style="display: none;">
                 <form>
@@ -660,7 +661,6 @@
                     </div>
                 </form>
             </div>
-
             <div id="setcode" style="display: none;">
                 <form>
                     <div class="form-group row">
@@ -676,7 +676,6 @@
                     </div>
                 </form>
             </div>
-
             <div id="updatecode" style="display: none;">
                 <form>
                     <div class="form-group row">
@@ -694,6 +693,75 @@
                     <div class="form-group row">
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-primary function">Update Code</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="socialupdateprofile" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">First Name: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control firstName" name="inputName" id="inputName"></input>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Last Name: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control lastName" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Age: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control age" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Job: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control job" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Birthday: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control birthday" name="inputName" id="inputName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary function">Social Update Profile</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="socialfollow" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Target Address: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control targetAddress" name="inputName" id="inputName"></input>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary function">Social Follow</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="socialunfollow" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">Target Address: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control targetAddress" name="inputName" id="inputName"></input>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary function">Social Unfollow</button>
                         </div>
                     </div>
                 </form>
