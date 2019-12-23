@@ -212,6 +212,11 @@ function bindOnClickFunction() {
         option = 29;
         toggleOption()
     })
+
+    $(".socialshare").click(async function (e) {
+        option = 30;
+        toggleOption()
+    })
 }
 
 function toggleOption() {
@@ -251,6 +256,8 @@ function toggleOption() {
     $("#socialupdateprofile").hide()
     $("#socialfollow").hide()
     $("#socialunfollow").hide()
+
+    $("#socialshare").hide()
 
     // $("#send-transaction").hide()
 
@@ -372,6 +379,10 @@ function toggleOption() {
 
     if (option === 29) {
         $("#socialunfollow").show()
+    }
+
+    if (option === 30) {
+        $("#socialshare").show()
     }
 }
 
@@ -657,6 +668,15 @@ function bindFunctionButton() {
             $("#send-transaction .function-name").val("unfollow")
             $("#send-transaction .args").val(`["${address}", "${targetAddress}"]`)
         }
+
+        if (option === 30) {
+            const postId = $("#socialunfollow .postId").val()
+            const title = $("#socialunfollow .title").val()
+
+            $("#send-transaction .contract-name").val("social.empow")
+            $("#send-transaction .function-name").val("share")
+            $("#send-transaction .args").val(`["${address}", "${postId}", "${title}"]`)
+        }
     })
 }
 
@@ -784,6 +804,10 @@ function bindSummitButton() {
         if (option === 29) {
             bindSocialUnfollowButton()
         }
+
+        if (option === 30) {
+            bindSocialShareButton()
+        }
     })
 }
 
@@ -868,8 +892,6 @@ function bindProducerRegisterButton() {
     const networkID = $("#producerregister .networkID").val()
 
     const tx = window.empow.callABI("vote_producer.empow", "applyRegister", [address, networkPublicKey, location, url, networkID, true])
-
-    console.log(tx)
 
     action(tx);
 }
@@ -1095,6 +1117,16 @@ function bindSocialUnfollowButton() {
 
     action(tx);
 }
+
+function bindSocialShareButton() {
+    const postId = $("#socialshare .postId").val()
+    const title = $("#socialshare .title").val()
+
+    const tx = window.empow.callABI("social.empow", "share", [address, postId, title])
+
+    action(tx);
+}
+
 
 function action(tx) {
     tx.addApprove("*", "unlimited")
