@@ -78,6 +78,9 @@
             <button type="button" class="btn btn-primary socialunfollow" data-name="socialunfollow">Social
                 Unfollow</button>
             <button type="button" class="btn btn-primary socialshare" data-name="socialshare">Social Share</button>
+            <button type="button" class="btn btn-primary buynormalusername" data-name="buynormalusername">Buy Normal Username</button>
+            <button type="button" class="btn btn-primary buypremiumusername" data-name="buypremiumusername">Buy Premium Username</button>
+            <button type="button" class="btn btn-primary selectusername" data-name="selectusername">Select Username</button>
 
             <div id="transfer" style="display: none;">
                 <form>
@@ -790,6 +793,54 @@
                     <div class="form-group row">
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-primary function">Social Share</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="buynormalusername" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">username: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control username" name="inputName"
+                                id="inputName"></input>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary function">Buy Normal Username</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="buypremiumusername" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">username: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control username" name="inputName"
+                                id="inputName"></input>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary function">Buy Premium Username</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="selectusername" style="display: none;">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-md-12">username: </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control username" name="inputName"
+                                id="inputName"></input>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary function">Select Username</button>
                         </div>
                     </div>
                 </form>

@@ -217,6 +217,21 @@ function bindOnClickFunction() {
         option = 30;
         toggleOption()
     })
+
+    $(".buynormalusername").click(async function (e) {
+        option = 31;
+        toggleOption()
+    })
+
+    $(".buypremiumusername").click(async function (e) {
+        option = 32;
+        toggleOption()
+    })
+
+    $(".selectusername").click(async function (e) {
+        option = 33;
+        toggleOption()
+    })
 }
 
 function toggleOption() {
@@ -258,6 +273,10 @@ function toggleOption() {
     $("#socialunfollow").hide()
 
     $("#socialshare").hide()
+
+    $("#buynormalusername").hide()
+    $("#buypremiumusername").hide()
+    $("#selectusername").hide()
 
     // $("#send-transaction").hide()
 
@@ -383,6 +402,18 @@ function toggleOption() {
 
     if (option === 30) {
         $("#socialshare").show()
+    }
+
+    if (option === 31) {
+        $("#buynormalusername").show()
+    }
+
+    if (option === 32) {
+        $("#buypremiumusername").show()
+    }
+
+    if (option === 33) {
+        $("#selectusername").show()
     }
 }
 
@@ -677,6 +708,30 @@ function bindFunctionButton() {
             $("#send-transaction .function-name").val("share")
             $("#send-transaction .args").val(`["${address}", "${postId}", "${title}"]`)
         }
+
+        if (option === 31) {
+            const username = $("#buynormalusername .username").val()
+
+            $("#send-transaction .contract-name").val("auth.empow")
+            $("#send-transaction .function-name").val("addNormalUsername")
+            $("#send-transaction .args").val(`["${address}", "${username}"]`)
+        }
+
+        if (option === 32) {
+            const username = $("#buypremiumusername .username").val()
+
+            $("#send-transaction .contract-name").val("auth.empow")
+            $("#send-transaction .function-name").val("addPremiumUsername")
+            $("#send-transaction .args").val(`["${address}", "${username}"]`)
+        }
+
+        if (option === 33) {
+            const username = $("#selectusername .username").val()
+
+            $("#send-transaction .contract-name").val("auth.empow")
+            $("#send-transaction .function-name").val("selectUsername")
+            $("#send-transaction .args").val(`["${username}"]`)
+        }
     })
 }
 
@@ -807,6 +862,18 @@ function bindSummitButton() {
 
         if (option === 30) {
             bindSocialShareButton()
+        }
+
+        if (option === 31) {
+            bindBuyNormalUsernameButton()
+        }
+
+        if (option === 32) {
+            bindBuyPremiumUsernameButton()
+        }
+
+        if (option === 33) {
+            bindSelectUsernameButton()
         }
     })
 }
@@ -1127,6 +1194,29 @@ function bindSocialShareButton() {
     action(tx);
 }
 
+function bindBuyNormalUsernameButton() {
+    const username = $("#buynormalusername .username").val()
+
+    const tx = window.empow.callABI("auth.empow", "addNormalUsername", [address, username])
+
+    action(tx);
+}
+
+function bindBuyPremiumUsernameButton() {
+    const username = $("#buypremiumusername .username").val()
+
+    const tx = window.empow.callABI("auth.empow", "addPremiumUsername", [address, username])
+
+    action(tx);
+}
+
+function bindSelectUsernameButton() {
+    const username = $("#selectusername .username").val()
+
+    const tx = window.empow.callABI("auth.empow", "selectUsername", [username])
+
+    action(tx);
+}
 
 function action(tx) {
     tx.addApprove("*", "unlimited")
